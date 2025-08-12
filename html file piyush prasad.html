@@ -1,0 +1,212 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Spiritual Guidance</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #a7c7e7 0%, #dbe9f4 50%, #f0f8ff 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      margin: 0;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      max-width: 100%;
+      width: 100%;
+      padding: 2rem 1.5rem 2.5rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 12px 30px rgba(59, 130, 246, 0.3);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+    .container::before {
+      content: "";
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle at center, #60a5fa 0%, transparent 70%);
+      filter: blur(50px);
+      opacity: 0.6;
+      z-index: 0;
+      border-radius: 50%;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: #2563eb;
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+    }
+    label {
+      color: #1e40af;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.5rem;
+      text-align: left;
+      font-size: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      border: 2px solid #93c5fd;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      z-index: 1;
+      font-weight: 500;
+      color: #1e3a8a;
+      background: #f9fbff;
+      box-shadow: inset 0 2px 5px rgb(255 255 255 / 0.7);
+    }
+    input::placeholder {
+      color: #7da6f7;
+      font-style: italic;
+    }
+    input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 12px #2563eb;
+      background: #fff;
+    }
+    button {
+      margin-top: 1.5rem;
+      width: 100%;
+      background-color: #2563eb;
+      color: white;
+      font-weight: 700;
+      padding: 0.75rem 0;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      font-size: 1.1rem;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 6px 15px rgba(37, 99, 235, 0.5);
+    }
+    button:hover {
+      background-color: #1e40af;
+      box-shadow: 0 8px 20px rgba(30, 64, 175, 0.7);
+    }
+    .verse {
+      margin-top: 2rem;
+      color: #1e3a8a;
+      font-style: italic;
+      font-size: 1.15rem;
+      line-height: 1.6;
+      text-shadow: 0 0 8px rgba(30, 58, 138, 0.35);
+      font-family: 'Playfair Display', serif;
+      position: relative;
+      z-index: 1;
+    }
+    .verse-english {
+      margin-top: 1rem;
+      font-style: normal;
+      font-weight: 600;
+      color: #1e40af;
+      text-shadow: 0 0 6px rgba(30, 64, 175, 0.3);
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <main class="container" role="main" aria-label="Spiritual guidance form and verse">
+    <h1>Spiritual Guidance</h1>
+    <form id="nameForm" class="space-y-4" autocomplete="off" novalidate>
+      <label for="nameInput">Enter Your Name:</label>
+      <input type="text" id="nameInput" name="nameInput" placeholder="Your name" required aria-required="true" />
+      <button type="submit">Submit</button>
+    </form>
+    <section id="verseContainer" class="hidden" aria-live="polite" aria-atomic="true">
+      <p id="verseHindi" class="verse"></p>
+      <p id="verseEnglish" class="verse-english"></p>
+    </section>
+  </main>
+
+  <script>
+    // Array of 200+ spiritual verses (sample 15 shown here, you can expand)
+    const verses = [
+      { hindi: "परमेश्वर तुम्हारा सहायक है; तुम न डरना।", english: "God is your helper; do not be afraid." },
+      { hindi: "प्रभु तुम्हारे लिए मार्गदर्शक और सहारा है।", english: "The Lord is your guide and support." },
+      { hindi: "परमेश्वर की आशीषें तुम्हारे जीवन में हों।", english: "May God's blessings be upon your life." },
+      { hindi: "विश्वास रखो, वह तुम्हें कभी नहीं छोड़ेगा।", english: "Have faith, He will never leave you." },
+      { hindi: "प्रभु तुम्हें शांति और शक्ति प्रदान करे।", english: "The Lord grants you peace and strength." },
+      { hindi: "प्रभु तुम्हारे दिल को सशक्त करे।", english: "The Lord strengthens your heart." },
+      { hindi: "परमेश्वर की कृपा सदैव तुम्हारे साथ हो।", english: "May God's grace always be with you." },
+      { hindi: "प्रभु तुम्हें आशा और विश्वास दे।", english: "The Lord gives you hope and faith." },
+      { hindi: "परमेश्वर की शांति तुम्हारे जीवन को भर दे।", english: "May God's peace fill your life." },
+      { hindi: "प्रभु तुम्हें हर परिस्थिति में मार्गदर्शन करे।", english: "The Lord guides you in every situation." },
+      { hindi: "परमेश्वर की प्रेममयी छाया तुम्हारे ऊपर बनी रहे।", english: "May God's loving shadow remain upon you." },
+      { hindi: "प्रभु तुम्हें धैर्य और साहस दे।", english: "The Lord grants you patience and courage." },
+      { hindi: "परमेश्वर की शक्ति तुम्हें हर बाधा से पार लगाए।", english: "God's power helps you overcome every obstacle." },
+      { hindi: "प्रभु तुम्हें आशीर्वाद और खुशियाँ दे।", english: "The Lord blesses you with joy and blessings." },
+      { hindi: "परमेश्वर तुम्हारे जीवन को उज्जवल करे।", english: "May God brighten your life." }
+      // Add more verses up to 200+ as needed
+    ];
+
+    const form = document.getElementById('nameForm');
+    const nameInput = document.getElementById('nameInput');
+    const verseContainer = document.getElementById('verseContainer');
+    const verseHindi = document.getElementById('verseHindi');
+    const verseEnglish = document.getElementById('verseEnglish');
+
+    // To keep track of assigned verses per user (in-memory)
+    const assignedUsers = new Map();
+
+    function getVerseForUser(name) {
+      // If user already has a verse assigned, return it
+      if (assignedUsers.has(name.toLowerCase())) {
+        return assignedUsers.get(name.toLowerCase());
+      }
+      // Assign a new verse not already assigned if possible
+      const assignedVerses = new Set(assignedUsers.values());
+      for (let i = 0; i < verses.length; i++) {
+        if (!assignedVerses.has(verses[i])) {
+          assignedUsers.set(name.toLowerCase(), verses[i]);
+          return verses[i];
+        }
+      }
+      // If all verses assigned, fallback to hash-based assignment
+      let hash = 0;
+      for (let i = 0; i < name.length; i++) {
+        hash = name.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      const index = Math.abs(hash) % verses.length;
+      const verse = verses[index];
+      assignedUsers.set(name.toLowerCase(), verse);
+      return verse;
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = nameInput.value.trim();
+      if (!name) {
+        alert('कृपया अपना नाम दर्ज करें। / Please enter your name.');
+        return;
+      }
+      const verse = getVerseForUser(name);
+      verseHindi.textContent = verse.hindi;
+      verseEnglish.textContent = verse.english;
+      form.classList.add('hidden');
+      verseContainer.classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>
